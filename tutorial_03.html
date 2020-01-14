@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Tutorial 03</title>
+
+    <style type="text/css">
+      svg .translucent {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="svg-canvas"></div>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script type="application/javascript">
+      $(() => {
+        const switch_translucent = () => {
+          const target = d3.select(d3.event.target.closest("g"));
+          const is_already_translucent = target.classed("translucent");
+
+          target.classed("translucent", !is_already_translucent);
+
+          if (!is_already_translucent) {
+            const out_of_target = d3.selectAll($(target.node()).siblings("g"));
+
+            out_of_target.classed("translucent", false);
+          }
+        };
+
+        const svg = d3.select(".svg-canvas").append("svg").attr("width", 640).attr("height", 480);
+
+        const group_01 = svg.append("g");
+        group_01.append("circle").attr("cx", 400).attr("cy", 400).attr("r", 50).on("click", switch_translucent);
+        group_01.append("rect").attr("x", 60).attr("y", 60).attr("width", 100).attr("height", 100).on("click", switch_translucent);
+
+        const group_02 = svg.append("g");
+        group_02.append("circle").attr("cx", 400).attr("cy", 60).attr("r", 50).on("click", switch_translucent);
+        group_02.append("rect").attr("x", 60).attr("y", 300).attr("width", 100).attr("height", 100).on("click", switch_translucent);
+      });
+    </script>
+  </body>
+
+</html>

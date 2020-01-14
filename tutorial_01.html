@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Tutorial 01</title>
+
+  </head>
+
+  <body>
+    <div class="svg-canvas"></div>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script type="application/javascript">
+      $(() => {
+        const svg = d3.select(".svg-canvas").append("svg").attr("width", 640).attr("height", 480);
+        svg.append("circle").attr("cx", 400).attr("cy", 400).attr("r", 50);
+        svg.append("rect").attr("x", 60).attr("y", 60).attr("width", 100).attr("height", 100);
+      });
+    </script>
+  </body>
+
+</html>
